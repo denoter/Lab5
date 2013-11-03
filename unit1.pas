@@ -49,7 +49,7 @@ function f2(z:real):real; // производная  f(a) * f(b) >0 net korney
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-a:=StrToFloat(edit1.text)
+a:=StrToFloat(edit1.text);
 b:=StrToFloat(edit2.text);
 e:=StrToFloat(edit3.text);
 h:=abs((a-b)/10);
