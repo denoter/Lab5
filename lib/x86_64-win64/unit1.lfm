@@ -1,12 +1,12 @@
 object Form1: TForm1
-  Left = 19
+  Left = 43
   Height = 267
-  Top = 214
+  Top = 174
   Width = 484
   Caption = 'Form1'
   ClientHeight = 267
   ClientWidth = 484
-  LCLVersion = '1.0.1.3'
+  LCLVersion = '1.0.12.0'
   object Label1: TLabel
     Left = 16
     Height = 16
@@ -53,11 +53,11 @@ object Form1: TForm1
     TabOrder = 2
   end
   object Button1: TButton
-    Left = 40
+    Left = 16
     Height = 25
     Top = 128
     Width = 75
-    Caption = 'Поехали!'
+    Caption = 'Ньютона'
     OnClick = Button1Click
     TabOrder = 3
   end
@@ -93,5 +93,14 @@ object Form1: TForm1
     ParentColor = False
     object Chart1LineSeries1: TLineSeries
     end
+  end
+  object Button2: TButton
+    Left = 96
+    Height = 25
+    Top = 128
+    Width = 75
+    Caption = 'Отрезок/2'
+    OnClick = Button2Click
+    TabOrder = 6
   end
 end

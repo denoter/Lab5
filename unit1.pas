@@ -14,6 +14,7 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
+    Button2: TButton;
     Chart1: TChart;
     Chart1LineSeries1: TLineSeries;
     Edit1: TEdit;
@@ -24,6 +25,7 @@ type
     Label3: TLabel;
     Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
 
   private
     { private declarations }
@@ -46,6 +48,10 @@ function f2(z:real):real; // производная  f(a) * f(b) >0 net korney
  begin
     f2:=2*z+1/z;
  end;
+function FV(x:real):real;
+begin
+Fv:=sqr(x)*arctan(x)-1;
+end;
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
@@ -78,6 +84,48 @@ del:=1;
  memo1.lines.add(('Конечный корень'+' '+floattostrf(x,fffixed,6,5)));
 
 
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var a,b,c,x:real;
+    code:integer;
+begin
+val(Edit1.text,a,code);
+if code=0 then
+   begin
+   val(Edit2.text,b,code);
+   if code=0 then
+      begin
+//a:=strtofloat(Edit1.text);
+//b:=strtofloat(Edit2.text);
+      memo1.lines.add('Отрезок ['+floattostr(a)+';'+floattostr(b)+']');
+
+      if Fv(a)*Fv(b)<0 then
+      begin
+      //Рисуем график
+      x:=a;
+      while x<b do
+         begin
+         Chart1LineSeries1.AddXY(x,Fv(x));
+         x:=x+abs(b-a)/12;
+         end;
+
+      memo1.lines.add('Промежуточные корни');
+      repeat
+         c:=(a+b)/2;
+         memo1.lines.add(floattostr(c));
+         if Fv(a)*Fv(c)<0 then b:=c
+                        else a:=c;
+      until b-a<e ;
+      x:=(a+b)/2;
+      end
+      else x:=a-1;
+      if x<a then memo1.lines.add('На данном интервале нету корней')
+             else memo1.lines.add('Ответ: '+floattostr(x));
+      end
+   else ShowMessage('Данные введены не корректно');
+   end
+else ShowMessage('Данные введены не корректно');
 end;
 
 end.
